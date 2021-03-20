@@ -6,8 +6,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,9 +38,10 @@ public class Company {
   private Integer numberAddress;
   @Column(name = "complement")
   private String complement;
-  @ManyToOne
-  @JoinColumn(name = "cityId", referencedColumnName = "cityId")
-  private City cityId;
+  @Column(name = "city")
+  private String city;
+  @Column(name = "uf", length = 2)
+  private String uf;
   @Column(name = "dtopen")
   @Temporal(TemporalType.DATE)
   private Date dtopen;
@@ -164,14 +163,20 @@ public class Company {
     this.complement = complement;
   }
 
-
-  public City getCityId() {
-    return cityId;
+  public String getCity() {
+    return city;
   }
 
+  public void setCity(String city) {
+    this.city = city;
+  }
 
-  public void setCityId(City cityId) {
-    this.cityId = cityId;
+  public String getUf() {
+    return uf;
+  }
+
+  public void setUf(String uf) {
+    this.uf = uf;
   }
 
 
@@ -251,13 +256,12 @@ public class Company {
     return true;
   }
 
-
   @Override
   public String toString() {
-    return "Company [cityId=" + cityId + ", cnpj=" + cnpj + ", companyId=" + companyId + ", complement=" + complement
-        + ", district=" + district + ", dtopen=" + dtopen + ", dtregister=" + dtregister + ", legalNature="
-        + legalNature + ", mail=" + mail + ", name=" + name + ", nameFantasy=" + nameFantasy + ", numberAddress="
-        + numberAddress + ", phone=" + phone + ", situation=" + situation + ", street=" + street + "]";
-  }
+    return "Company [cnpj=" + cnpj + ", companyId=" + companyId + ", complement=" + complement + ", district="
+        + district + ", dtopen=" + dtopen + ", dtregister=" + dtregister + ", legalNature=" + legalNature + ", mail="
+        + mail + ", name=" + name + ", nameFantasy=" + nameFantasy + ", numberAddress=" + numberAddress + ", phone="
+        + phone + ", situation=" + situation + ", street=" + street + ", userCollection=" + userCollection + "]";
+  }  
   
 }

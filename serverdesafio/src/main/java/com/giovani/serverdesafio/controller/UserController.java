@@ -2,6 +2,12 @@ package com.giovani.serverdesafio.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import com.giovani.serverdesafio.exceptions.DeleteUserException;
+import com.giovani.serverdesafio.exceptions.FindUserException;
+import com.giovani.serverdesafio.exceptions.RegisterUserException;
+import com.giovani.serverdesafio.exceptions.UpdateUserException;
 import com.giovani.serverdesafio.resource.user.RegisterUserRequest;
 import com.giovani.serverdesafio.resource.user.UpdateUserRequest;
 import com.giovani.serverdesafio.resource.user.UserResponse;
@@ -35,28 +41,51 @@ public class UserController {
   private UpdateUserServiceImpl updateUserService;
 
   @PostMapping(path = "/")
-  public void create(@RequestBody RegisterUserRequest user){
-    registerUserService.create(user);
+  public void create(@RequestBody @Valid RegisterUserRequest user){
+    try {
+      registerUserService.create(user);
+    } catch (RegisterUserException e) {
+      e.printStackTrace();
+    }
   }
   
   @GetMapping(path = "/")
   public List<UserResponse> list(){
-    return findUserService.list();
+    try {
+      return findUserService.list();
+    } catch (FindUserException e) {
+      e.printStackTrace();
+      return null;
+    }
   }
   
   @GetMapping(path = "/{id}")
   public UserResponse show(@PathVariable(name = "id", required = true) Long id){
-    return findUserService.show(id);
+    try {
+      return findUserService.show(id);
+    } catch (FindUserException e) {
+      e.printStackTrace();
+      return null;
+    }
   }
   
   @DeleteMapping(path = "/{id}")
   public void delete(@PathVariable(name = "id", required = true) Long id){
-    deleteUserService.delete(id);
+    try {
+      deleteUserService.delete(id);
+    } catch (DeleteUserException e) {
+      e.printStackTrace();
+    }
   }
 
   @PutMapping(path = "/")
-  public UserResponse update(@RequestBody UpdateUserRequest user){
-    return updateUserService.update(user);
+  public UserResponse update(@RequestBody @Valid UpdateUserRequest user){
+    try {
+      return updateUserService.update(user);
+    } catch (UpdateUserException e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
 }

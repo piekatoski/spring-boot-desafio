@@ -1,7 +1,10 @@
 package com.giovani.serverdesafio.resource.company;
 
+import javax.validation.constraints.NotNull;
+
 public class UpdateCompanyRequest {
   
+  @NotNull
   private Long companyId;
   private String name;
   private String nameFatantasy;

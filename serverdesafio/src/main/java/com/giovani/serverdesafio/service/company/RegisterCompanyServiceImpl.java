@@ -17,8 +17,14 @@ public class RegisterCompanyServiceImpl {
   private CompanyConversorImpl companyConversor;
 
   public void create(RegisterCompanyRequest companyRequest){
-    Company company = companyConversor.convertRegisterCompany(companyRequest);
-    companyRepository.saveAndFlush(company);
+    Company company;
+    try{
+      company = companyConversor.convertRegisterCompany(companyRequest);
+      companyRepository.saveAndFlush(company);
+    }catch(Exception ex){
+      ex.printStackTrace();
+    }
+    
   }
   
 }

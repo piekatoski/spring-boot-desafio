@@ -1,11 +1,24 @@
 package com.giovani.serverdesafio.resource.user;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import lombok.Getter;
+
+@Getter
 public class RegisterUserRequest {
   
+  @NotBlank(message = "{name.not.blank}")
   private String name;
+  @NotBlank(message = "{mail.not.blank}")
+  @Email(message = "{mail.not.valid}")
   private String mail;
+  @NotBlank(message = "{login.user.not.blank}")
   private String login;
+  @NotBlank(message = "{password.user.not.blank}")
   private String password;
+  @NotNull(message = "{id.company.not.null}")
   private Long companyId;
   
   

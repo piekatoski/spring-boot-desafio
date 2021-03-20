@@ -1,5 +1,8 @@
 package com.giovani.serverdesafio.service.company;
 
+import java.util.Optional;
+
+import com.giovani.serverdesafio.exceptions.UpdateCompanyException;
 import com.giovani.serverdesafio.model.Company;
 import com.giovani.serverdesafio.repository.CompanyRepository;
 import com.giovani.serverdesafio.resource.company.CompanyResponse;
@@ -17,18 +20,31 @@ public class UpdateCompanyServiceImpl {
   @Autowired
   private CompanyConversorImpl companyConversor;
 
-  public CompanyResponse update(UpdateCompanyRequest companyRequest){
-    Company company = companyRepository.findById(companyRequest.getCompanyId()).get();
-    
-    company.setName(companyRequest.getName());
-    company.setNameFantasy(companyRequest.getNameFatantasy());
-    company.setPhone(companyRequest.getPhone());
-    company.setMail(companyRequest.getMail());
-    company.setDistrict(companyRequest.getDistrict());
-    company.setStreet(companyRequest.getStreet());
-    company.setNumberAddress(companyRequest.getNumberAddress());
-    company.setComplement(companyRequest.getComplement());
+  public CompanyResponse update(UpdateCompanyRequest companyRequest) throws UpdateCompanyException{
+    Optional<Company> opCompany;
+    Company company;
+    try{
+      opCompany = companyRepository.findById(companyRequest.getCompanyId());
+      if(opCompany.isPresent()){
+        company = opCompany.get();
 
-    return companyConversor.convertCompany(company);
+        company.setName(companyRequest.getName());
+        company.setNameFantasy(companyRequest.getNameFatantasy());
+        company.setPhone(companyRequest.getPhone());
+        company.setMail(companyRequest.getMail());
+        company.setDistrict(companyRequest.getDistrict());
+        company.setStreet(companyRequest.getStreet());
+        company.setNumberAddress(companyRequest.getNumberAddress());
+        company.setComplement(companyRequest.getComplement());
+
+        companyRepository.save(company);
+
+        return companyConversor.convertCompany(company);
+      }
+      throw new UpdateCompanyException("company " + companyRequest.getCompanyId() + " does not exist");
+    }catch(UpdateCompanyException ex){
+      ex.printStackTrace();
+      throw ex;
+    }
   }
 }

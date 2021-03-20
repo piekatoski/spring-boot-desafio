@@ -1,11 +1,22 @@
 package com.giovani.serverdesafio.resource.user;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+
 public class UpdateUserRequest {
 
+  @NotNull(message = "{id.user.not.blank}")
   private Long userId;
+  @NotBlank(message = "{name.not.blank}")
   private String name;
+  @NotBlank(message = "{mail.not.blank}")
+  @Email(message = "{mail.not.valid}")
   private String mail;
+  @NotBlank(message = "{login.user.not.blank}")
   private String login;
+  @NotBlank(message = "{password.user.not.blank}")
   private String password;
 
   public UpdateUserRequest() {

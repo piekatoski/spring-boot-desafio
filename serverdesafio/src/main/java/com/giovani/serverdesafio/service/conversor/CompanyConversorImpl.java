@@ -36,6 +36,8 @@ public class CompanyConversorImpl {
     company.setPhone(register.getPhone());
     company.setSituation(register.getSituation());
     company.setStreet(register.getStreet());
+    company.setCity(register.getCity());
+    company.setUf(register.getUf());
     
     return company;
   }
@@ -53,6 +55,8 @@ public class CompanyConversorImpl {
     receitaRes.setStreet(receitaRequest.getLogradouro());
     receitaRes.setComplement(receitaRequest.getComplemento());
     receitaRes.setLegalNature(receitaRequest.getNatureza_juridica());
+    receitaRes.setCity(receitaRequest.getMunicipio());
+    receitaRes.setUf(receitaRequest.getUf());
 
     receitaRes.setDtopen(FormatUtil.formataDate(receitaRequest.getAbertura()));
     receitaRes.setPhone(Long.parseLong(receitaRequest.getTelefone().replaceAll("[^0-9]", "")));

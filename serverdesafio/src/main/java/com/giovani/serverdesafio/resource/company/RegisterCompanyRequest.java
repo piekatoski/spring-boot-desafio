@@ -2,8 +2,12 @@ package com.giovani.serverdesafio.resource.company;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class RegisterCompanyRequest {
   
+  @NotBlank(message = "{name.not.blank}")
   private String name;
   private String nameFatantasy;
   private Long phone;
@@ -16,7 +20,10 @@ public class RegisterCompanyRequest {
   private String cityId;
   private Date dtopen;
   private String legalNature;
+  @NotNull(message = "{cnpj.company.not.null}")
   private Long cnpj;
+  private String city;
+  private String uf;
 
   public RegisterCompanyRequest() {
   }
@@ -123,6 +130,22 @@ public class RegisterCompanyRequest {
 
   public void setCnpj(Long cnpj) {
     this.cnpj = cnpj;
-  } 
+  }
+
+  public String getCity() {
+    return city;
+  }
+
+  public void setCity(String city) {
+    this.city = city;
+  }
+
+  public String getUf() {
+    return uf;
+  }
+
+  public void setUf(String uf) {
+    this.uf = uf;
+  }
 
 }

@@ -13,10 +13,11 @@ public class ReceitaWsResponse {
   private String street;
   private Long numberAddress;
   private String complement;
-  private Long cityId;
   private Date dtopen;
   private String legalNature;
   private Long cnpj;
+  private String city;
+  private String uf;
   
   public ReceitaWsResponse() {
   }
@@ -93,13 +94,6 @@ public class ReceitaWsResponse {
     this.complement = complement;
   }
 
-  public Long getCityId() {
-    return cityId;
-  }
-
-  public void setCityId(Long cityId) {
-    this.cityId = cityId;
-  }
 
   public Date getDtopen() {
     return dtopen;
@@ -123,6 +117,22 @@ public class ReceitaWsResponse {
 
   public void setCnpj(Long cnpj) {
     this.cnpj = cnpj;
+  }
+
+  public String getCity() {
+    return city;
+  }
+
+  public void setCity(String city) {
+    this.city = city;
+  }
+
+  public String getUf() {
+    return uf;
+  }
+
+  public void setUf(String uf) {
+    this.uf = uf;
   }
 
 }

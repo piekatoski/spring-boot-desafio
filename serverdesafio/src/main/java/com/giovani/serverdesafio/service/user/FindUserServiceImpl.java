@@ -2,7 +2,9 @@ package com.giovani.serverdesafio.service.user;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import com.giovani.serverdesafio.exceptions.FindUserException;
 import com.giovani.serverdesafio.model.User;
 import com.giovani.serverdesafio.repository.UserRepository;
 import com.giovani.serverdesafio.resource.user.UserResponse;
@@ -19,17 +21,31 @@ public class FindUserServiceImpl {
   @Autowired
   private UserConversorImpl userConversor;
 
-  public List<UserResponse> list(){
-    List<UserResponse> usersResponse = new ArrayList<>();
-    List<User> users = userRepository.findAll();
-    users.forEach(user -> usersResponse.add(userConversor.convertUser(user)));
-
-    return usersResponse;
+  public List<UserResponse> list() throws FindUserException{
+    List<UserResponse> usersResponse;
+    List<User> users;
+    try{
+      usersResponse = new ArrayList<>();
+      users = userRepository.findAll();
+      users.forEach(user -> usersResponse.add(userConversor.convertUser(user)));
+      
+      return usersResponse;
+    }catch(Exception ex){
+      throw new FindUserException("error find all users", ex.getCause());
+    }
   }
   
-  public UserResponse show(Long userId){
-    User user = userRepository.findById(userId).get();
-
-    return userConversor.convertUser(user);
+  public UserResponse show(Long userId) throws FindUserException{
+    Optional<User> user;
+    try{
+      user = userRepository.findById(userId);
+      if(user.isPresent()){
+        return userConversor.convertUser(user.get());
+      }
+      throw new FindUserException("user " + userId + " does not exist");
+    }catch(FindUserException ex){
+      ex.printStackTrace();
+      throw ex;
+    }
   }
 }
