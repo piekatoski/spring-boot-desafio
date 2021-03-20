@@ -23,6 +23,7 @@ public class RegisterCompanyServiceImpl {
       companyRepository.saveAndFlush(company);
     }catch(Exception ex){
       ex.printStackTrace();
+      throw ex;
     }
     
   }

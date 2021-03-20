@@ -43,6 +43,7 @@ public class RegisterUserServiceImpl {
       }
     }catch(RegisterUserException ex){
       ex.printStackTrace();
+      throw ex;
     }
 
     

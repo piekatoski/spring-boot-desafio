@@ -11,6 +11,8 @@ import com.giovani.serverdesafio.service.conversor.UserConversorImpl;
 import com.giovani.serverdesafio.service.utils.ValidationUtilImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,9 +25,10 @@ public class UpdateUserServiceImpl {
   @Autowired
   private ValidationUtilImpl validation;
 
-  public UserResponse update(UpdateUserRequest userRequest) throws UpdateUserException{
+  public ResponseEntity<UserResponse> update(UpdateUserRequest userRequest) throws UpdateUserException{
     Optional<User> opUser;
     User user;
+    UserResponse userResponse;
     try{
       opUser = userRepository.findById(userRequest.getUserId());
       if(opUser.isPresent()){
@@ -37,7 +40,9 @@ public class UpdateUserServiceImpl {
           user.setLogin(userRequest.getLogin());
           user = userRepository.save(user);
 
-          return userConversor.convertUser(user);
+          userResponse = userConversor.convertUser(user); 
+
+          return new ResponseEntity<>(userResponse, HttpStatus.OK);
         }
         throw new UpdateUserException("user " + userRequest.getUserId() + " does not exist");
       }

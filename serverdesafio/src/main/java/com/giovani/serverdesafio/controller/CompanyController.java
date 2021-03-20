@@ -16,6 +16,8 @@ import com.giovani.serverdesafio.service.company.RegisterCompanyServiceImpl;
 import com.giovani.serverdesafio.service.company.UpdateCompanyServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,41 +45,43 @@ public class CompanyController {
   }
 
   @PostMapping(path = "/")
-  public void create(@RequestBody @Valid RegisterCompanyRequest company){
+  public ResponseEntity create(@RequestBody @Valid RegisterCompanyRequest company){
     try {
       registerService.create(company);
+      return new ResponseEntity<>(HttpStatus.OK);
     } catch (Exception e) {
       e.printStackTrace();
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
   @GetMapping(path = "/")
-  public List<CompanyResponse> list(){
+  public ResponseEntity<List<CompanyResponse>> list(){
     try {
       return findService.list();
     } catch (FindCompanyException e) {
       e.printStackTrace();
-      return null;
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
   @GetMapping(path = "/{id}")
-  public CompanyResponse show(@PathVariable(name = "id", required = true) Long id){
+  public ResponseEntity<CompanyResponse> show(@PathVariable(name = "id", required = true) Long id){
     try {
       return findService.show(id);
     } catch (FindCompanyException e) {
       e.printStackTrace();
-      return null;
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
 
   @PutMapping(path = "/")
-  public CompanyResponse update(@RequestBody @Valid UpdateCompanyRequest company){
+  public ResponseEntity<CompanyResponse> update(@RequestBody @Valid UpdateCompanyRequest company){
     try {
       return updateService.update(company);
     } catch (UpdateCompanyException e) {
       e.printStackTrace();
-      return null;
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 

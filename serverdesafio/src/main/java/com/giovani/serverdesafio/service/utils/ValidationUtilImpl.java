@@ -14,7 +14,7 @@ public class ValidationUtilImpl {
   private CompanyRepository companyRepository;
 
   public Boolean isMailValid(String mail){
-    return userRepository.findByMail(mail).isPresent();
+    return !userRepository.findByMail(mail).isPresent();
   }
 
   public Boolean isCompanyValid(Long companyId){

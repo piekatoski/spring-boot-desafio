@@ -10,6 +10,8 @@ import com.giovani.serverdesafio.resource.company.UpdateCompanyRequest;
 import com.giovani.serverdesafio.service.conversor.CompanyConversorImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,9 +22,10 @@ public class UpdateCompanyServiceImpl {
   @Autowired
   private CompanyConversorImpl companyConversor;
 
-  public CompanyResponse update(UpdateCompanyRequest companyRequest) throws UpdateCompanyException{
+  public ResponseEntity<CompanyResponse> update(UpdateCompanyRequest companyRequest) throws UpdateCompanyException{
     Optional<Company> opCompany;
     Company company;
+    CompanyResponse companyResponse;
     try{
       opCompany = companyRepository.findById(companyRequest.getCompanyId());
       if(opCompany.isPresent()){
@@ -39,7 +42,9 @@ public class UpdateCompanyServiceImpl {
 
         companyRepository.save(company);
 
-        return companyConversor.convertCompany(company);
+        companyResponse = companyConversor.convertCompany(company);
+
+        return new ResponseEntity<>(companyResponse, HttpStatus.OK);
       }
       throw new UpdateCompanyException("company " + companyRequest.getCompanyId() + " does not exist");
     }catch(UpdateCompanyException ex){

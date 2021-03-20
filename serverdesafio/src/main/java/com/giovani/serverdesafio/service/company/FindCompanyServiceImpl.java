@@ -11,6 +11,8 @@ import com.giovani.serverdesafio.resource.company.CompanyResponse;
 import com.giovani.serverdesafio.service.conversor.CompanyConversorImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,15 +23,15 @@ public class FindCompanyServiceImpl {
   @Autowired
   private CompanyConversorImpl companyConversor;
 
-  public List<CompanyResponse> list() throws FindCompanyException{
+  public ResponseEntity<List<CompanyResponse>> list() throws FindCompanyException{
     List<CompanyResponse> companiesResponse;
     List<Company> companies;
     try{
       companiesResponse = new ArrayList<>();
       companies = companyRepository.findAll();
       companies.forEach(company -> companiesResponse.add(companyConversor.convertCompany(company)));
-
-      return companiesResponse; 
+      
+      return new ResponseEntity(companiesResponse, HttpStatus.OK); 
     }catch(Exception ex){
       ex.printStackTrace();
       throw new FindCompanyException("error find all companies", ex.getCause());
@@ -38,12 +40,14 @@ public class FindCompanyServiceImpl {
     
   }
   
-  public CompanyResponse show(Long companyId) throws FindCompanyException{
+  public ResponseEntity<CompanyResponse> show(Long companyId) throws FindCompanyException{
     Optional<Company> company;
+    CompanyResponse companyResponse;
     try{
       company = companyRepository.findById(companyId);
       if(company.isPresent()){
-        return companyConversor.convertCompany(company.get());
+        companyResponse = companyConversor.convertCompany(company.get());
+        return new ResponseEntity<CompanyResponse>(companyResponse, HttpStatus.OK);
       }
       throw new FindCompanyException("company " + companyId + " does not exist");
     }catch(FindCompanyException ex){

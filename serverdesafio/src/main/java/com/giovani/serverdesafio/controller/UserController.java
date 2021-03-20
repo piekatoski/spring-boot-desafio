@@ -17,6 +17,8 @@ import com.giovani.serverdesafio.service.user.RegisterUserServiceImpl;
 import com.giovani.serverdesafio.service.user.UpdateUserServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,50 +43,54 @@ public class UserController {
   private UpdateUserServiceImpl updateUserService;
 
   @PostMapping(path = "/")
-  public void create(@RequestBody @Valid RegisterUserRequest user){
+  public ResponseEntity create(@RequestBody @Valid RegisterUserRequest user){
     try {
       registerUserService.create(user);
+      return new ResponseEntity<>(HttpStatus.OK);
     } catch (RegisterUserException e) {
       e.printStackTrace();
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
   
   @GetMapping(path = "/")
-  public List<UserResponse> list(){
+  public ResponseEntity<List<UserResponse>> list(){
     try {
       return findUserService.list();
     } catch (FindUserException e) {
       e.printStackTrace();
-      return null;
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
   
   @GetMapping(path = "/{id}")
-  public UserResponse show(@PathVariable(name = "id", required = true) Long id){
+  public ResponseEntity<UserResponse> show(@PathVariable(name = "id", required = true) Long id){
     try {
       return findUserService.show(id);
     } catch (FindUserException e) {
       e.printStackTrace();
-      return null;
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
   
   @DeleteMapping(path = "/{id}")
-  public void delete(@PathVariable(name = "id", required = true) Long id){
+  public ResponseEntity delete(@PathVariable(name = "id", required = true) Long id){
     try {
       deleteUserService.delete(id);
+      return new ResponseEntity<>(HttpStatus.OK);
     } catch (DeleteUserException e) {
       e.printStackTrace();
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
 
   @PutMapping(path = "/")
-  public UserResponse update(@RequestBody @Valid UpdateUserRequest user){
+  public ResponseEntity<UserResponse> update(@RequestBody @Valid UpdateUserRequest user){
     try {
       return updateUserService.update(user);
     } catch (UpdateUserException e) {
       e.printStackTrace();
-      return null;
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 

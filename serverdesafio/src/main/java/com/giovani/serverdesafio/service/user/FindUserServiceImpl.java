@@ -11,6 +11,8 @@ import com.giovani.serverdesafio.resource.user.UserResponse;
 import com.giovani.serverdesafio.service.conversor.UserConversorImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,7 +23,7 @@ public class FindUserServiceImpl {
   @Autowired
   private UserConversorImpl userConversor;
 
-  public List<UserResponse> list() throws FindUserException{
+  public ResponseEntity<List<UserResponse>> list() throws FindUserException{
     List<UserResponse> usersResponse;
     List<User> users;
     try{
@@ -29,18 +31,20 @@ public class FindUserServiceImpl {
       users = userRepository.findAll();
       users.forEach(user -> usersResponse.add(userConversor.convertUser(user)));
       
-      return usersResponse;
+      return new ResponseEntity<>(usersResponse, HttpStatus.OK);
     }catch(Exception ex){
       throw new FindUserException("error find all users", ex.getCause());
     }
   }
   
-  public UserResponse show(Long userId) throws FindUserException{
+  public ResponseEntity<UserResponse> show(Long userId) throws FindUserException{
     Optional<User> user;
+    UserResponse userResponse;
     try{
       user = userRepository.findById(userId);
       if(user.isPresent()){
-        return userConversor.convertUser(user.get());
+        userResponse = userConversor.convertUser(user.get()); 
+        return new ResponseEntity<>(userResponse, HttpStatus.OK);
       }
       throw new FindUserException("user " + userId + " does not exist");
     }catch(FindUserException ex){
