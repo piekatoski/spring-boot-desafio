@@ -1,0 +1,26 @@
+version: '3'
+
+services: 
+  mysql-database:
+    image: mysql:5.7
+    environment: 
+      MYSQL_ROOT_PASSWORD: "desafio12021"
+      MYSQL_DATABASE: "avalistadb"
+    ports:
+      - 3306:3306
+    volumes: 
+      - /home/giovani/projects/database-docker/avalistadb:/var/lib/mysql
+    networks: 
+      - mysql-compose-network
+
+  adminer:
+    image: adminer
+    ports: 
+      - 8081:8080
+    networks: 
+      - mysql-compose-network
+
+
+networks: 
+  mysql-compose-network:
+    driver: bridge
