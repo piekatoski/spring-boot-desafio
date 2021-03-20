@@ -31,7 +31,7 @@ public class FindCompanyServiceImpl {
       companies = companyRepository.findAll();
       companies.forEach(company -> companiesResponse.add(companyConversor.convertCompany(company)));
       
-      return new ResponseEntity(companiesResponse, HttpStatus.OK); 
+      return new ResponseEntity<>(companiesResponse, HttpStatus.OK); 
     }catch(Exception ex){
       ex.printStackTrace();
       throw new FindCompanyException("error find all companies", ex.getCause());
