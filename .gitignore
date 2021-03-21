@@ -1,0 +1,33 @@
+serverdesafio/HELP.md
+serverdesafio/target/
+serverdesafio/!.mvn/wrapper/maven-wrapper.jar
+serverdesafio/!**/src/main/**/target/
+serverdesafio/!**/src/test/**/target/
+
+### STS ###
+serverdesafio/.apt_generated
+serverdesafio/.classpath
+serverdesafio/.factorypath
+serverdesafio/.project
+serverdesafio/.settings
+serverdesafio/.springBeans
+serverdesafio/.sts4-cache
+
+### IntelliJ IDEA ###
+serverdesafio/.idea
+serverdesafio/*.iws
+serverdesafio/*.iml
+serverdesafio/*.ipr
+
+### NetBeans ###
+serverdesafio//nbproject/private/
+serverdesafio//nbbuild/
+serverdesafio//dist/
+/nbdist/
+serverdesafio//.nb-gradle/
+serverdesafio/build/
+serverdesafio/!**/src/main/**/build/
+serverdesafio/!**/src/test/**/build/
+
+### VS Code ###
+serverdesafio/.vscode/
