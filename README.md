@@ -53,10 +53,10 @@ $cd serverdesafio
 
 ## Preparando o Ambiente <a name = "ambiente"></a>
 
-Antes de acessar o projeto utilizando o seu editor de código, precisamos prepar o ambiente para o projeto conseguir ser compilado.
+Antes de acessar o projeto utilizando o seu editor de código, precisamos preparar o ambiente para o projeto ser compilado.
 
-Primeiro vamos baixar e configurar o [Maven](https://maven.apache.org/download.cgi) que é o repositorio das dependências do projeto.
-Após baixar o Maven com a versão de sua preferência é necessario configurar o mesmo para o JDK o encontrar.
+Primeiro vamos baixar e configurar o [Maven](https://maven.apache.org/download.cgi) que é o repositório das dependências do projeto.
+Após baixar o Maven com a versão de sua preferência é necessário configurar o mesmo para o JDK o encontrar.
 Aqui disponibilizo alguns links com tutoriais de configuração para cada sistema Operacional.
 
 - [Windows](https://dicasdejava.com.br/como-instalar-o-maven-no-windows/)
@@ -64,9 +64,9 @@ Aqui disponibilizo alguns links com tutoriais de configuração para cada sistem
 - [MacOS](https://loiane.com/2015/05/instalando-maven-no-mac-os-yosemite)
 
 Além do Maven precisamos configurar a Base de Dados e executar os SQLs bases.
-Nesse projeto utilizamos o [DOCKER](https://www.docker.com/products/docker-desktop) junto com o Docker Compose para criar os containers necessários
+Nesse projeto utilizamos o [DOCKER](https://www.docker.com/products/docker-desktop) junto com o Docker Compose para criar os containers necessários.
 
-Após baixar, instalar e configurar o Docker é necessario instalar o Docker Compose que será utilizado para a criação tanto do container da Base de Dados quando do Database Manager.
+Após baixar, instalar e configurar o Docker é necessário instalar o Docker Compose que será utilizado para a criação tanto do container da Base de Dados quando do Database Manager.
 [Aqui](https://docs.docker.com/compose/install/) você encontra a documentação de instalação do mesmo.
 
 Antes da execução será necessário ajustar o caminho do Volume onde do docker irá salvar as informações da base de dados.
@@ -104,7 +104,7 @@ Execute nessa ordem os sqls:
 
 Agora, com o container da base de dados levantada e as tabelas criadas podemos executar nossa aplicação pelo Editor.
 
-Por padrão nossa API estará acessivel na porta 8080.
+Por padrão nossa API estará acessível na porta 8080.
 Recomendamos a utilização de algum programa de Requisições HTTP para facilitar os testes. Pode ser utilizado o [Insomnia](https://insomnia.rest/download) ou o [Postman](https://www.postman.com/).
 
 ## Tecnologias Utilizadas <a name = "tecnologias"></a>
