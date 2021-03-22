@@ -26,6 +26,9 @@ REST API em Spring boot de Usuários e Empresas
 - [Iniciando <a name = "iniciando"></a>](#iniciando-)
 - [Preparando o Ambiente <a name = "ambiente"></a>](#preparando-o-ambiente-)
 - [Executando <a name = "executando"></a>](#executando-)
+- [Testes <a name = "testes"></a>](#testes-)
+  - [Usuário <a name = "usuario"></a>](#usuário-)
+  - [Empresa <a name = "empresa"></a>](#empresa-)
 - [Tecnologias Utilizadas <a name = "tecnologias"></a>](#tecnologias-utilizadas-)
 - [Autor <a name = "autor"></a>](#autor-)
 
@@ -106,6 +109,59 @@ Agora, com o container da base de dados levantada e as tabelas criadas podemos e
 
 Por padrão nossa API estará acessível na porta 8080.
 Recomendamos a utilização de algum programa de Requisições HTTP para facilitar os testes. Pode ser utilizado o [Insomnia](https://insomnia.rest/download) ou o [Postman](https://www.postman.com/).
+
+## Testes <a name = "testes"></a>
+
+Algumas orienttações para os testes da API.
+Foram utilizados endpoints para cada situação requisitada.
+
+### Usuário <a name = "usuario"></a>
+
+- Create (POST) : http://localhost:8080/user/
+  ```
+  {
+    "name": "Teste",
+    "mail": "teste@teste.com",
+    "login": "teste",
+    "password": "123abc",
+    "companyId": 1
+  }
+  ```
+- Update (PUT) : http://localhost:8080/user/
+  ```
+  {
+    "userId": 2,
+    "name": "Giovani",
+    "mail": "giovani@gmail.com",
+    "login": "giovani123",
+    "password": "123456"
+  }
+  ```
+- List (GET) : http://localhost:8080/user/
+- FindOne (GET) : http://localhost:8080/user/1
+- Delete (DELETE) : http://localhost:8080/user/1
+
+### Empresa <a name = "empresa"></a>
+
+- Create (POST) : http://localhost:8080/company/
+  ``` 
+  {
+    "name" : "Teste SA",
+    "cnpj": 51262306200
+  }
+  ```
+- Check CNPJ (GET) : http://localhost:8080/company/cnpj/00000000000000
+- Update (PUT) : http://localhost:8080/company/
+  ```
+  {
+    "companyId": 1,
+    "name" : "Super SA"
+  }
+  ```
+- List (GET) : http://localhost:8080/company/
+- FindOne (GET) : http://localhost:8080/company/1
+
+
 
 ## Tecnologias Utilizadas <a name = "tecnologias"></a>
 

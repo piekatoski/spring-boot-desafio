@@ -5,6 +5,11 @@ import java.util.Date;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Class represents Request register Company.
+ * Used Validation in fields requested
+ * 
+ */
 public class RegisterCompanyRequest {
   
   @NotBlank(message = "{name.not.blank}")

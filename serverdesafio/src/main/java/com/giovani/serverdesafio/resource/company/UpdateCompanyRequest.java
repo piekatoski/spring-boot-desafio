@@ -2,6 +2,11 @@ package com.giovani.serverdesafio.resource.company;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * Class represents Request Update Company.
+ * Used Validation in fields requested
+ * 
+ */
 public class UpdateCompanyRequest {
   
   @NotNull

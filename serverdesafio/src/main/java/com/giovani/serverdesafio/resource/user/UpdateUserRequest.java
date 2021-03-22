@@ -4,7 +4,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-
+/**
+ * Class represents Request Update User.
+ * Used Validation in fields requested
+ * 
+ */
 public class UpdateUserRequest {
 
   @NotNull(message = "{id.user.not.blank}")

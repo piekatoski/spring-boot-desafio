@@ -2,6 +2,10 @@ package com.giovani.serverdesafio.resource.user;
 
 import java.util.Date;
 
+/**
+ * Class represents Response User.
+ * 
+ */
 public class UserResponse {
   
   private Long userId;

@@ -8,6 +8,9 @@ import com.giovani.serverdesafio.resource.user.UserResponse;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * Componet to converter Entity User in classes Request, Response
+ */
 @Component
 public class UserConversorImpl {
   

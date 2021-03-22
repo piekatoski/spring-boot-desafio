@@ -1,5 +1,9 @@
 package com.giovani.serverdesafio.resource.company;
 
+/**
+ * Class represents Response Company.
+ * 
+ */
 public class CompanyResponse {
   
   private Long companyId;

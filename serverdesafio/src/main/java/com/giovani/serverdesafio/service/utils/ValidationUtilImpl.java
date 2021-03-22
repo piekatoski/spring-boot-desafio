@@ -6,6 +6,9 @@ import com.giovani.serverdesafio.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Component with validations on entities 
+ */
 @Component
 public class ValidationUtilImpl {
   @Autowired

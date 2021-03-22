@@ -15,6 +15,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+/**
+ * Sevice to Find Company.
+ * Valid required fields. 
+ */
 @Service
 public class FindCompanyServiceImpl {
   
@@ -23,6 +27,11 @@ public class FindCompanyServiceImpl {
   @Autowired
   private CompanyConversorImpl companyConversor;
 
+  /**
+   * Find all companies
+   * @return
+   * @throws FindCompanyException
+   */
   public ResponseEntity<List<CompanyResponse>> list() throws FindCompanyException{
     List<CompanyResponse> companiesResponse;
     List<Company> companies;
@@ -40,6 +49,12 @@ public class FindCompanyServiceImpl {
     
   }
   
+  /**
+   * Find one company
+   * @param companyId
+   * @return
+   * @throws FindCompanyException
+   */
   public ResponseEntity<CompanyResponse> show(Long companyId) throws FindCompanyException{
     Optional<Company> company;
     CompanyResponse companyResponse;

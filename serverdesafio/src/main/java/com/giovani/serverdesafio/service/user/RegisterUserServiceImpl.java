@@ -12,6 +12,10 @@ import com.giovani.serverdesafio.service.utils.ValidationUtilImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Sevice to Register User.
+ * Valid required fields. 
+ */
 @Service
 public class RegisterUserServiceImpl {
   
@@ -24,7 +28,11 @@ public class RegisterUserServiceImpl {
   @Autowired
   private ValidationUtilImpl validation;
 
-
+  /**
+   * Valid Mail and Company before save
+   * @param userRequest
+   * @throws RegisterUserException
+   */
   public void create(RegisterUserRequest userRequest) throws RegisterUserException{
     User user;
     Company company;

@@ -2,6 +2,10 @@ package com.giovani.serverdesafio.resource.company;
 
 import java.util.Date;
 
+/**
+ * Class represents Response Receita WS in fields formatted.
+ * 
+ */
 public class ReceitaWsResponse {
   
   private String name;

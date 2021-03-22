@@ -6,6 +6,9 @@ import com.giovani.serverdesafio.service.conversor.CompanyConversorImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Sevice to check CNPJ company in Receita.
+ */
 @Service
 public class CheckCNPJReceitaServiceImpl {
   

@@ -1,5 +1,9 @@
 package com.giovani.serverdesafio.resource.company;
 
+/**
+ * Class represents Request Receita WS (Api External).
+ * 
+ */
 public class ReceitaWsRequest {
   
   private String data_situacao;

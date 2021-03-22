@@ -15,6 +15,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+/**
+ * Sevice to Find User.
+ * Valid required fields. 
+ */
 @Service
 public class FindUserServiceImpl {
   
@@ -23,6 +27,11 @@ public class FindUserServiceImpl {
   @Autowired
   private UserConversorImpl userConversor;
 
+  /**
+   * Find all users
+   * @return
+   * @throws FindUserException
+   */
   public ResponseEntity<List<UserResponse>> list() throws FindUserException{
     List<UserResponse> usersResponse;
     List<User> users;
@@ -37,6 +46,12 @@ public class FindUserServiceImpl {
     }
   }
   
+  /**
+   * Find one user
+   * @param userId
+   * @return
+   * @throws FindUserException
+   */
   public ResponseEntity<UserResponse> show(Long userId) throws FindUserException{
     Optional<User> user;
     UserResponse userResponse;

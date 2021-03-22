@@ -9,6 +9,9 @@ import com.giovani.serverdesafio.utils.FormatUtil;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * Componet to converter Entity Company in classes Request, Response
+ */
 @Component
 public class CompanyConversorImpl {
   
@@ -42,8 +45,11 @@ public class CompanyConversorImpl {
     return company;
   }
 
-
-
+  /**
+   * Convert Request Receita WS in Respose formatted
+   * @param receitaRequest
+   * @return
+   */
   public ReceitaWsResponse convertReceitaWs(ReceitaWsRequest receitaRequest){
     ReceitaWsResponse receitaRes = new ReceitaWsResponse();
 

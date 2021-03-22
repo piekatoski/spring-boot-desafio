@@ -14,6 +14,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+/**
+ * Sevice to Update Company.
+ * Valid required fields. 
+ */
 @Service
 public class UpdateCompanyServiceImpl {
   
@@ -22,6 +26,12 @@ public class UpdateCompanyServiceImpl {
   @Autowired
   private CompanyConversorImpl companyConversor;
 
+  /**
+   * Valid id company exist before update
+   * @param companyRequest
+   * @return
+   * @throws UpdateCompanyException
+   */
   public ResponseEntity<CompanyResponse> update(UpdateCompanyRequest companyRequest) throws UpdateCompanyException{
     Optional<Company> opCompany;
     Company company;

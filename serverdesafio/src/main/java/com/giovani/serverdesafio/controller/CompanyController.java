@@ -26,6 +26,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Class Company Controller
+ */
 @RestController
 @RequestMapping("/company")
 public class CompanyController {
@@ -39,6 +42,12 @@ public class CompanyController {
   @Autowired
   private UpdateCompanyServiceImpl updateService;
 
+  /**
+   * method check CNPJ.
+   * return information in json
+   * @param cnpj
+   * @return
+   */
   @GetMapping(path = "/cnpj/{cnpj}")
   public ReceitaWsResponse checkCNPJ(@PathVariable(name = "cnpj", required = true) Long cnpj){
     return cnpjService.checkCNPJ(cnpj);

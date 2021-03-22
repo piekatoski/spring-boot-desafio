@@ -15,6 +15,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+/**
+ * Sevice to Update User.
+ * Valid required fields. 
+ */
 @Service
 public class UpdateUserServiceImpl {
   
@@ -25,6 +29,12 @@ public class UpdateUserServiceImpl {
   @Autowired
   private ValidationUtilImpl validation;
 
+  /**
+   * Valid if User Exist before Update 
+   * @param userRequest
+   * @return
+   * @throws UpdateUserException
+   */
   public ResponseEntity<UserResponse> update(UpdateUserRequest userRequest) throws UpdateUserException{
     Optional<User> opUser;
     User user;

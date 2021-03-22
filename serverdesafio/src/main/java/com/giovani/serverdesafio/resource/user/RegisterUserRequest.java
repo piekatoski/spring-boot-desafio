@@ -6,7 +6,11 @@ import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 
-@Getter
+/**
+ * Class represents Request register User.
+ * Used Validation in fields requested
+ * 
+ */
 public class RegisterUserRequest {
   
   @NotBlank(message = "{name.not.blank}")
